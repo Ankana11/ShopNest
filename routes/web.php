@@ -29,8 +29,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
 });
 
-Route::group(['account'],function(){
-    Route::get('/register',[AccountController::class,'register'])->name('account.register');
-    Route::get('/login',[AccountController::class,'login'])->name('account.login');
-    Route::post('/processregister',[AccountController::class,'processreg'])->name('account.processregister');
-});
+
+Route::get('/register', [AccountController::class, 'register'])->name('account.register');
+Route::get('/login', [AccountController::class, 'login'])->name('account.login');
+Route::post('/processregister', [AccountController::class, 'processreg'])->name('account.processregister');
