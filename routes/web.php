@@ -26,7 +26,14 @@ Route::get('/shop_details',[HomeController::class,'shop_details'])->name('shop_d
 Route::get('/cart',[HomeController::class,'cart'])->name('cart');
 
 Route::group(['prefix' => 'admin'], function(){
-    Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
+   
+    Route::group(['middleware' => 'admin.guest'], function(){
+        Route::get('/login',[DashboardController::class,'login'])->name('admin.login');
+    });
+
+    Route::group(['middleware' => 'admin.auth'], function(){
+        Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
+    });
 });
 
 
