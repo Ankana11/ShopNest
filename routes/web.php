@@ -25,16 +25,18 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/shop_details',[HomeController::class,'shop_details'])->name('shop_details');
 Route::get('/cart',[HomeController::class,'cart'])->name('cart');
 
-Route::group(['prefix' => 'admin'], function(){
-   
-    Route::group(['middleware' => 'admin.guest'], function(){
-        Route::get('/login',[DashboardController::class,'login'])->name('admin.login');
+Route::group(['prefix' => 'admin'], function() {
+    Route::group(['middleware' => 'admin.guest'], function() {
+        Route::get('/login', [DashboardController::class, 'login'])->name('admin.login');
+        Route::post('/authenticate', [DashboardController::class, 'authenticate'])->name('admin.authenticate');
     });
 
-    Route::group(['middleware' => 'admin.auth'], function(){
-        Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
+    Route::group(['middleware' => 'admin.auth'], function() {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/logout', [DashboardController::class, 'logout'])->name('admin.logout');
     });
 });
+
 
 
 Route::get('/register', [AccountController::class, 'register'])->name('account.register');
