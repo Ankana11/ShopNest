@@ -25,7 +25,7 @@ class DashboardController extends Controller
         ]);
     
         if ($validator->passes()) {
-            Log::info('Attempting authentication for email: ' . $request->email);
+            // Log::info('Attempting authentication for email: ' . $request->email);
     
             if (Auth::guard('admin')->attempt([
                 'email' => $request->email,
@@ -34,7 +34,7 @@ class DashboardController extends Controller
     
                 $admin = Auth::guard('admin')->user();
     
-                Log::info('Authenticated user: ' . $admin->email);
+                // Log::info('Authenticated user: ' . $admin->email);
     
                 if ($admin->role == 'admin') {
                     return redirect()->route('admin.dashboard');
@@ -44,7 +44,7 @@ class DashboardController extends Controller
                 }
     
             } else {
-                Log::error('Authentication failed for email: ' . $request->email);
+                // Log::error('Authentication failed for email: ' . $request->email);
                 return redirect()->route('admin.login')->with('error', 'Either Email/Password is incorrect');
             }
         } else {
