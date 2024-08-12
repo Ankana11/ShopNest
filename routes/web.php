@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::group(['middleware' => 'admin.auth'], function() {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/logout', [DashboardController::class, 'logout'])->name('admin.logout');
+        Route::get('/category', [CategoryController::class, 'create'])->name('admin.create-category');
     });
 });
 
