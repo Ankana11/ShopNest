@@ -35,7 +35,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::group(['middleware' => 'admin.auth'], function() {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/logout', [DashboardController::class, 'logout'])->name('admin.logout');
-        Route::get('/category', [CategoryController::class, 'create'])->name('admin.create-category');
+        Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.create-category');
+        Route::post('/store', [CategoryController::class, 'store'])->name('admin.store');
     });
 });
 

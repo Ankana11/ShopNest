@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>
     <div class="container-scroller">
@@ -69,6 +70,15 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
     <!-- End custom js for this page -->
+
+    <script type="text/javascript">
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+  </script>
+
     @yield('customJs')
   </body>
 </html>
