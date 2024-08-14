@@ -75,7 +75,7 @@
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.create-category') }}">Create Categories</a></li>
-            <li class="nav-item"> <a class="nav-link" href="">Manage Categories</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.list') }}">Manage Categories</a></li>
            
           </ul>
         </div>

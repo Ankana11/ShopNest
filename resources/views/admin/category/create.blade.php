@@ -67,6 +67,8 @@
                 success: function(response){
                  
                   if(response['status'] == true){
+                   alert("Category Stored Successfuly");
+                    window.location.href="{{ route('admin.list') }}"
                     $('#name').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
 
                     $('#slug').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
@@ -93,5 +95,21 @@
                 }
             });
         });
+        $("#name").change(function(){
+          element = $(this);
+            $.ajax({
+                url: '{{ route("getSlug") }}',  
+                type: 'get',
+                dataType: 'json',
+                data: {title: element.val()},  
+                success: function(response){
+                    console.log(response); 
+                    if(response['status'] == true){
+                        $('#slug').val(response['slug']);
+                    }
+                }
+            });
+        });
+       
     </script>
 @endsection
