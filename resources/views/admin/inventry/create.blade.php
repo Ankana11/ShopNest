@@ -9,8 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Create Inventry</h4>
-                        
-                        <form class="forms-sample" action="{{ route('admin.store') }}" method="post" name="categoryForm" id="categoryForm">
+                        <form class="forms-sample" action="" method="post" name="inventoryForm" id="inventoryForm">
                             @csrf  
                             <div class="form-group">
                                 <label for="exampleInputName1">Product Name</label>
@@ -37,8 +36,6 @@
                                 <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Name">
                                 <p></p>
                             </div>
-
-                            
                             <div class="form-group">
                                 <label for="exampleSelectGender">Status</label>
                                 <select class="form-control" id="exampleSelectGender" name="status">
@@ -48,12 +45,10 @@
                             </div>
                             <div class="form-group">
                                 <label>Image upload</label>
-                                <input type="file" name="img[]" class="file-upload-default">
+                                {{-- <input type="file" name="img" class="file-upload-default"> --}}
                                 <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                    <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                    </span>
+                                    <input type="file" class="form-control file-upload-info" placeholder="Upload Image">
+                                    
                                 </div>
                             </div>
 
