@@ -47,11 +47,9 @@
                                 <label>Image upload</label>
                                 {{-- <input type="file" name="img" class="file-upload-default"> --}}
                                 <div class="input-group col-xs-12">
-                                    <input type="file" class="form-control file-upload-info" placeholder="Upload Image">
-                                    
+                                    <input type="file" class="form-control file-upload-info" placeholder="Upload Image">         
                                 </div>
                             </div>
-
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             <button class="btn btn-dark">Cancel</button>
                         </form>
