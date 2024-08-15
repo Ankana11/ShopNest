@@ -81,13 +81,22 @@
         </div>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+        <a class="nav-link" data-toggle="collapse" href="#ui-basics" aria-expanded="false" aria-controls="ui-basics">
           <span class="menu-icon">
-            <i class="mdi mdi-playlist-play"></i>
+            <i class="mdi mdi-laptop"></i>
           </span>
-          <span class="menu-title">Form Elements</span>
+          <span class="menu-title">Inventry</span>
+          <i class="menu-arrow"></i>
         </a>
+        <div class="collapse" id="ui-basics">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.create-inventry') }}">Create Inventry</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.list') }}">Manage Inventry</a></li>
+           
+          </ul>
+        </div>
       </li>
+      
       <li class="nav-item menu-items">
         <a class="nav-link" href="pages/tables/basic-table.html">
           <span class="menu-icon">

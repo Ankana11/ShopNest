@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\InventryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,13 +34,13 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/login', [DashboardController::class, 'login'])->name('admin.login');
         Route::post('/authenticate', [DashboardController::class, 'authenticate'])->name('admin.authenticate');
     });
-
     Route::group(['middleware' => 'admin.auth'], function() {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/logout', [DashboardController::class, 'logout'])->name('admin.logout');
         Route::get('/category/create', [CategoryController::class, 'create'])->name('admin.create-category');
         Route::post('/store', [CategoryController::class, 'store'])->name('admin.store');
         Route::get('/list', [CategoryController::class, 'index'])->name('admin.list');
+        Route::get('/create-inventry', [InventryController::class, 'create'])->name('admin.create-inventry');
 
         Route::get('/getSlug',function(Request $request){
         $slug = '';
@@ -56,9 +57,6 @@ Route::group(['prefix' => 'admin'], function() {
 
     });
 });
-
-
-
 Route::get('/register', [AccountController::class, 'register'])->name('account.register');
 Route::get('/login', [AccountController::class, 'login'])->name('account.login');
 Route::post('/processregister', [AccountController::class, 'processreg'])->name('account.processregister');
