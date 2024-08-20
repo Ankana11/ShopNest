@@ -41,6 +41,8 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('/store', [CategoryController::class, 'store'])->name('admin.store');
         Route::get('/list', [CategoryController::class, 'index'])->name('admin.list');
         Route::get('/create-inventry', [InventryController::class, 'create'])->name('admin.create-inventry');
+        Route::post('/store-inventry', [InventryController::class, 'store'])->name('admin.store-inventry');
+        Route::get('/product-list', [InventryController::class, 'index'])->name('admin.product-list');
 
         Route::get('/getSlug',function(Request $request){
         $slug = '';

@@ -91,7 +91,7 @@
         <div class="collapse" id="ui-basics">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.create-inventry') }}">Create Inventry</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.list') }}">Manage Inventry</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.product-list') }}">Manage Inventry</a></li>
            
           </ul>
         </div>

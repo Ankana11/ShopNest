@@ -8,14 +8,14 @@
                 <div class="card">
               @include('admin.message')
                     <div class="card-body">
-                        <h4 class="card-title">Order Status</h4>
+                        <h4 class="card-title">Inventry Status</h4>
                         <div class="mb-4">
                             <form action="" method="get">
                                 <div class="input-group">
                                     <input type="text" class="form-control" value="{{ Request::get('keyword') }}" name="keyword" placeholder="Search categories...">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">Search</button>
-                                        <button onclick="window.location.href='{{ route('admin.list') }}'" class="btn btn-danger ml-2" type="button">Reset</button>
+                                        <button onclick="window.location.href='{{ route('admin.product-list') }}'" class="btn btn-danger ml-2" type="button">Reset</button>
 
                                     </div>
                                 </div>
@@ -28,25 +28,25 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Name</th>
-                                        <th>Slug</th>
-                                        <th>Status</th>
+                                        <th>Description</th>
+                                        {{-- <th>Status</th> --}}
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($categories->isNotEmpty())
-                                        @foreach ($categories as $category)
+                                    @if ($inventries->isNotEmpty())
+                                        @foreach ($inventries as $inventry)
                                             <tr>
-                                                <td>{{ $category->id }}</td>
-                                                <td>{{ $category->name }}</td>
-                                                <td>{{ $category->slug }}</td>
-                                                <td>
-                                                    @if($category->status == 'active')
+                                                <td>{{ $inventry->id }}</td>
+                                                <td>{{ $inventry->name }}</td>
+                                                <td>{{ $inventry->description }}</td>
+                                                {{-- <td>
+                                                    @if($inventry->status == 'active')
                                                         <i class="mdi mdi-check-circle text-success"></i>
                                                     @else
                                                         <i class="mdi mdi-close-octagon text-danger"></i>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <i class="mdi mdi-delete text-danger"></i>
                                                     <i class="mdi mdi-table-edit text-success"></i>
@@ -64,7 +64,7 @@
 
                         <!-- Pagination -->
                         <div class="d-flex justify-content-center mt-4">
-                            {{ $categories->links() }}
+                            {{ $inventries->links() }}
                         </div>
                         <!-- End Pagination -->
 
