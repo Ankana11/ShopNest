@@ -12,7 +12,7 @@
                         <div class="mb-4">
                             <form action="" method="get">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" value="{{ Request::get('keyword') }}" name="keyword" placeholder="Search categories...">
+                                    <input type="text" class="form-control" value="{{ Request::get('keyword') }}" name="keyword" placeholder="Search Products...">
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit">Search</button>
                                         <button onclick="window.location.href='{{ route('admin.product-list') }}'" class="btn btn-danger ml-2" type="button">Reset</button>

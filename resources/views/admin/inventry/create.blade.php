@@ -63,7 +63,7 @@
                  
                   if(response['status'] == true){
                    alert("Inventry Stored Successfuly");
-                    window.location.href="{{ route('admin.list') }}"
+                    window.location.href="{{ route('admin.product-list') }}"
                     $('#name').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
 
                     $('#description').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");

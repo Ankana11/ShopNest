@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         \App\Models\Category::factory(30)->create();
+        \App\Models\Inventry::factory(30)->create();
     }
 }
