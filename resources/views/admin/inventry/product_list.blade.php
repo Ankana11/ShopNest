@@ -27,6 +27,7 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
+                                        <th>Image</th>
                                         <th>Name</th>
                                         <th>Description</th>
                                         {{-- <th>Status</th> --}}
@@ -38,6 +39,7 @@
                                         @foreach ($inventries as $inventry)
                                             <tr>
                                                 <td>{{ $inventry->id }}</td>
+                                                <td><img src="{{ asset($inventry->image) }}" alt=""></td>
                                                 <td>{{ $inventry->name }}</td>
                                                 <td>{{ $inventry->description }}</td>
                                                 {{-- <td>

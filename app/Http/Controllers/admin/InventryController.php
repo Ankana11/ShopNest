@@ -27,34 +27,49 @@ class InventryController extends Controller
     }
 
     public function store(Request $request){
-       $validator = Validator::make($request->all(),[
-        'name' => 'required',
-        'description' => 'required',
-        'price' => 'required'
-       
-       ]);
-
-       if ($validator->passes()) {
-        $inventry = new Inventry();
-        $inventry->name = $request->name;
-        $inventry->description = $request->description;
-        $inventry->price = $request->price;
-        $inventry->save();
-    
-        // $request->session()->flash('success', 'Category added successfully');
-
-    
-        return response()->json([
-            'status' => true,
-            'message' => 'Inventry added successfully'  
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'required|mimes:png,jpg,jpeg'
         ]);
-    }else{
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
+    
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $path = 'inventry/image/';
+    
+            // Move uploaded file to storage path
+            $file->move(public_path($path), $filename);
+    
+            // Save image path to database
+            $inventry = new Inventry();
+            $inventry->name = $request->name;
+            $inventry->description = $request->description;
+            $inventry->image = $path . $filename;  // Store full path or just filename based on your needs
+            $inventry->price = $request->price;
+            $inventry->save();
+    
+            return response()->json([
+                'status' => true,
+                'message' => 'Inventory added successfully'
+            ]);
+        }
+    
         return response()->json([
             'status' => false,
-            'errors' => $validator->errors()
+            'message' => 'Failed to upload image'
         ]);
-
-        
-       }
     }
+    
+    
 }
