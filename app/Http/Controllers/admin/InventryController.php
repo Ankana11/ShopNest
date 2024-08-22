@@ -41,21 +41,21 @@ class InventryController extends Controller
             ]);
         }
     
-        // Handle file upload
+        
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $path = 'inventry/image/';
     
-            // Move uploaded file to storage path
+            
             $file->move(public_path($path), $filename);
     
-            // Save image path to database
+           
             $inventry = new Inventry();
             $inventry->name = $request->name;
             $inventry->description = $request->description;
-            $inventry->image = $path . $filename;  // Store full path or just filename based on your needs
+            $inventry->image = $path . $filename;  
             $inventry->price = $request->price;
             $inventry->save();
     
