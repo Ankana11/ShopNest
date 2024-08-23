@@ -50,8 +50,8 @@
                                                     @endif
                                                 </td> --}}
                                                 <td>
-                                                    <i class="mdi mdi-delete text-danger"></i>
-                                                    <i class="mdi mdi-table-edit text-success"></i>
+                                                    <button class="btn btn-success" type="submit">Edit</button>
+                                                    <button class="btn btn-danger" type="submit">Delete</button>
                                                 </td>
                                             </tr>
                                         @endforeach

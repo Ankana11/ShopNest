@@ -53,15 +53,15 @@
     $('#inventoryForm').submit(function(event){
         event.preventDefault();  
         var element = $(this)[0];
-        var formData = new FormData(element); // Use FormData to handle file uploads
+        var formData = new FormData(element); 
 
         $.ajax({
             url: '{{ route("admin.store-inventry") }}',  
             type: 'POST',
             dataType: 'json',
-            data: formData,  // Pass the FormData object
-            contentType: false,  // Necessary for file uploads
-            processData: false,  // Necessary for file uploads
+            data: formData,  
+            contentType: false, 
+            processData: false,  
             success: function(response){
                 if(response.status == true){
                     alert("Inventory Stored Successfully");
