@@ -50,7 +50,7 @@
                                                     @endif
                                                 </td> --}}
                                                 <td>
-                                                    <button class="btn btn-success" type="submit">Edit</button>
+                                                   <a href="edit_product.php"><button class="btn btn-success" type="submit">Edit</button></a> 
                                                     <button class="btn btn-danger" type="submit">Delete</button>
                                                 </td>
                                             </tr>
