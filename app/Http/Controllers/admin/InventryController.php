@@ -15,7 +15,7 @@ class InventryController extends Controller
 
     public function index(Request $request)
     {
-        $inventries = Inventry::latest();
+        $inventries = Inventry::where('active', 0)->latest();;
     
         if (!empty($request->get('keyword'))) {
             $inventries = $inventries->where('name', 'like', '%' . $request->get('keyword') . '%');
@@ -46,7 +46,7 @@ class InventryController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            $path = 'inventry/image/';
+            $path = 'image/';
     
             
             $file->move(public_path($path), $filename);
@@ -70,6 +70,68 @@ class InventryController extends Controller
             'message' => 'Failed to upload image'
         ]);
     }
+
+    public function update($id){
+        $inventry = Inventry::find($id);
+        return view('admin.inventry.update_inventry')->with('inventry', $inventry);
+    }
     
+    public function update_data(Request $request, $id)
+    {
+        $inventry = Inventry::find($id);
+    
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'nullable|mimes:png,jpg,jpeg'
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
+    
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $path = 'image/';
+            $file->move(public_path($path), $filename);
+            $inventry->image = $path . $filename; 
+        }
+    
+        $inventry->name = $request->name;
+        $inventry->description = $request->description;
+        $inventry->price = $request->price;
+        $inventry->save();  
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'Inventory updated successfully'
+        ]);
+    }
+    
+    public function delete($id)
+    {
+        $inventry = Inventry::find($id);
+    
+        if ($inventry) {
+            $inventry->active = 1;
+            $inventry->save();
+    
+            return response()->json([
+                'status' => true,
+                'message' => 'Inventory marked as deleted successfully'
+            ]);
+        }
+    
+        return response()->json([
+            'status' => false,
+            'message' => 'Inventory not found'
+        ]);
+    }
     
 }

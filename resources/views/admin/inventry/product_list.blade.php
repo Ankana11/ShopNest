@@ -50,9 +50,11 @@
                                                     @endif
                                                 </td> --}}
                                                 <td>
-                                                   <a href="edit_product.php"><button class="btn btn-success" type="submit">Edit</button></a> 
-                                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                                </td>
+                                                    <a href="{{ route('admin.update', $inventry->id) }}"><button class="btn btn-success" type="submit">Edit</button></a>
+
+                                                    <a href="javascript:void(0);" onclick="deleteInventory({{ $inventry->id }})">
+                                                        <button class="btn btn-danger" type="button">Delete</button>
+                                                    </a>
                                             </tr>
                                         @endforeach
                                     @else
@@ -79,5 +81,29 @@
 @endsection
 
 @section('customJs')
-<!-- Add your custom JavaScript here if needed -->
+<script>
+    function deleteInventory(id) {
+    if (confirm("Are you sure you want to delete this item?")) {
+        $.ajax({
+            url: '{{ route("admin.delete", "") }}/' + id,  // Correctly concatenate the URL
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                if (response.status == true) {
+                    alert(response.message);
+                    window.location.reload();  // Reload the page or redirect as needed
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function(jqXHR, exception) {
+                console.log('Something went wrong');
+            }
+        });
+    }
+}
+
+</script>
 @endsection

@@ -43,6 +43,11 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/create-inventry', [InventryController::class, 'create'])->name('admin.create-inventry');
         Route::post('/store-inventry', [InventryController::class, 'store'])->name('admin.store-inventry');
         Route::get('/product-list', [InventryController::class, 'index'])->name('admin.product-list');
+        Route::get('/update/{id}', [InventryController::class, 'update'])->name('admin.update');
+        Route::put('/update-data/{id}', [InventryController::class, 'update_data'])->name('admin.update_data');
+// web.php
+Route::post('/delete/{id}', [InventryController::class, 'delete'])->name('admin.delete');
+
 
         Route::get('/getSlug',function(Request $request){
         $slug = '';
