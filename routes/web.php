@@ -47,20 +47,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::put('/update-data/{id}', [InventryController::class, 'update_data'])->name('admin.update_data');
         Route::post('/delete/{id}', [InventryController::class, 'delete'])->name('admin.delete');
 
-
-        Route::get('/getSlug',function(Request $request){
-        $slug = '';
-        if(!empty($request->title)){
-            $slug = Str::slug($request->title);
-        }
-        return response()->json([
-            'status' => true,
-            'slug' => $slug  
-        ]);
-
-        })->name('getSlug');
-
-
     });
 });
 Route::get('/register', [AccountController::class, 'register'])->name('account.register');
