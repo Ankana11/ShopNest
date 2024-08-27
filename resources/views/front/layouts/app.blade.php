@@ -63,7 +63,7 @@
                         <div class="navbar-nav mx-auto">
                             <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                             <a href="shop.html" class="nav-item nav-link">Shop</a>
-                            <a href="{{ route('shop_details') }}" class="nav-item nav-link">Shop Detail</a>
+                       
                            
                         </div>
                         <div class="d-flex m-3 me-0">

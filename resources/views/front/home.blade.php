@@ -112,7 +112,6 @@
                             <div class="row g-4">
                                 @foreach ($inventries as $inventry)
                                     
-                               
                                 <div class="col-md-6 col-lg-4 col-xl-3">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
@@ -124,7 +123,7 @@
                                             <p>{{ $inventry->description }}</p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0">Rs.{{ $inventry->price }}/-</p>
-                                                <a href="{{ route('shop_details') }}" class="btn border border-secondary rounded-pill px-3 text-primary">View</a>
+                                                <a href="{{ route('shop_details', ['id' => $inventry->id]) }}" class="btn border border-secondary rounded-pill px-3 text-primary">View</a>
                                             </div>
                                         </div>
                                     </div>

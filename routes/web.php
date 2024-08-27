@@ -26,7 +26,8 @@ use Illuminate\Support\Str;
 
 
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('/shop_details',[HomeController::class,'shop_details'])->name('shop_details');
+Route::get('/shop_details/{id}', [HomeController::class, 'shop_details'])->name('shop_details');
+
 Route::get('/cart',[HomeController::class,'cart'])->name('cart');
 
 Route::group(['prefix' => 'admin'], function() {
