@@ -25,6 +25,7 @@ class HomeController extends Controller
     
 
     public function cart(){
+        
      return view('front.cart');
     }
 
