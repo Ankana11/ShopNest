@@ -24,9 +24,39 @@ class HomeController extends Controller
     }
     
 
-    public function cart(){
-        
-     return view('front.cart');
+    public function addToCart(Request $request) {
+       
+        $cart = session()->get('cart', []);
+    
+       $image = $request->input('image');
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $price = $request->input('price');
+        $quantity = $request->input('quantity', 1); 
+    
+       
+        $item = [
+            'id' => $id,
+            'name' => $name,
+            'price' => $price,
+            'quantity' => $quantity,
+            'image' => $image
+        ];
+    
+     
+        $cart[] = $item;
+    
+       
+        session()->put('cart', $cart);
+    
+      
+        return redirect()->route('cart');
+    }
+    
+    public function cart() {
+      
+        $cart = session()->get('cart', []);
+        return view('front.cart', compact('cart'));
     }
 
 }

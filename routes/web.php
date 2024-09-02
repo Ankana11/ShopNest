@@ -28,7 +28,8 @@ use Illuminate\Support\Str;
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/shop_details/{id}', [HomeController::class, 'shop_details'])->name('shop_details');
 
-Route::get('/cart',[HomeController::class,'cart'])->name('cart');
+Route::post('/add-to-cart', [HomeController::class, 'addToCart'])->name('add_to_cart');
+Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
 
 Route::group(['prefix' => 'admin'], function() {
     Route::group(['middleware' => 'admin.guest'], function() {
