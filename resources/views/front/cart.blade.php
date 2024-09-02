@@ -27,7 +27,9 @@
                         <th scope="col">Handle</th>
                       </tr>
                     </thead>
+                    {{-- @dd(session()->all()); --}}
                     <tbody>
+
                         @if(session('cart'))
                             @foreach(session('cart') as $item)
                             <tr>
