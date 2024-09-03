@@ -51,6 +51,8 @@ Route::group(['prefix' => 'admin'], function() {
 
     });
 });
+Route::group(['middleware' => 'user'], function() {
 Route::get('/register', [AccountController::class, 'register'])->name('account.register');
 Route::get('/login', [AccountController::class, 'login'])->name('account.login');
 Route::post('/processregister', [AccountController::class, 'processreg'])->name('account.processregister');
+});
