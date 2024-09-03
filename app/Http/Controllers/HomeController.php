@@ -25,38 +25,68 @@ class HomeController extends Controller
     
 
     public function addToCart(Request $request) {
-       
+        // Retrieve current cart from session
         $cart = session()->get('cart', []);
     
-       $image = $request->input('image');
+        // Retrieve input data
+        $image = $request->input('image');
         $id = $request->input('id');
         $name = $request->input('name');
         $price = $request->input('price');
-        $quantity = $request->input('quantity', 1); 
+        $quantity = $request->input('quantity', 1);
     
-       
-        $item = [
-            'id' => $id,
-            'name' => $name,
-            'price' => $price,
-            'quantity' => $quantity,
-            'image' => $image
-        ];
+        // Calculate total price for the current item
+        $totalprice = $price * $quantity;
     
-     
-        $cart[] = $item;
+        // Initialize grand total
+        $grandTotal = 0;
     
-       
+        // Check if item already exists in cart based on ID
+        $itemExists = false;
+        foreach ($cart as &$item) {
+            if (isset($item['id']) && $item['id'] === $id) {
+                // Update quantity and total price if item already exists
+                $item['quantity'] += $quantity;
+                $item['totalprice'] += $totalprice;
+                $itemExists = true;
+                break;
+            }
+        }
+    
+        // If item is not already in cart, add it as a new item
+        if (!$itemExists) {
+            $item = [
+                'id' => $id,
+                'name' => $name,
+                'price' => $price,
+                'quantity' => $quantity,
+                'image' => $image,
+                'totalprice' => $totalprice,
+            ];
+    
+            $cart[] = $item;
+        }
+    
+        // Calculate grand total price for all items in cart
+        foreach ($cart as $item) {
+            $grandTotal += $item['totalprice'];
+        }
+    
+        // Store grand total separately in the session under a different key
         session()->put('cart', $cart);
+        session()->put('grandtotal', $grandTotal);
     
-      
+        // Redirect to cart page
         return redirect()->route('cart');
     }
+    
+    
     
     public function cart() {
       
         $cart = session()->get('cart', []);
-        return view('front.cart', compact('cart'));
+        $grandTotal = session()->get('grandtotal', 0);
+        return view('front.cart', compact('cart', 'grandTotal'));
     }
 
 }

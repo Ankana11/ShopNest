@@ -86,7 +86,7 @@
                 </table>
             </div>
             <div class="mt-5">
-                <a href="" class="btn border-secondary rounded-pill px-4 py-3 text-primary">Continue Shopping</a>
+                <a href="{{ route('home') }}" class="btn border-secondary rounded-pill px-4 py-3 text-primary">Continue Shopping</a>
             </div>
             @if(session('cart'))
             <div class="row g-4 justify-content-end">
@@ -97,19 +97,14 @@
                             <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
                             <div class="d-flex justify-content-between mb-4">
                                 <h5 class="mb-0 me-4">Subtotal:</h5>
-                                <p class="mb-0">Rs.{{ $total = collect(session('cart'))->sum(function($item) { return $item['price'] * $item['quantity']; }) }}</p>
+                                <p class="mb-0">Rs.{{ $grandTotal }}</p>
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <h5 class="mb-0 me-4">Shipping</h5>
-                                <div class="">
-                                    <p class="mb-0">Flat rate: Rs.100.00</p>
-                                </div>
-                            </div>
-                            <p class="mb-0 text-end">Shipping to your address.</p>
+                           
+                          
                         </div>
                         <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                             <h5 class="mb-0 ps-4 me-4">Total</h5>
-                            <p class="mb-0 pe-4">Rs.{{ $total + 100 }}</p>
+                            <p class="mb-0 pe-4">Rs.{{ $grandTotal }}</p>
                         </div>
                         <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
                     </div>
